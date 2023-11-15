@@ -1,6 +1,7 @@
 package com.example.Sorsolo;
 
 import com.sun.tools.javac.Main;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class MainController {
     }
 
     @GetMapping("/getOne/{name}")
+    @Transactional
     public String getOne(@PathVariable("name") String name){
         int newIndex = -1;
         boolean reroll = true;
@@ -32,7 +34,9 @@ public class MainController {
         }
 
         if(lista.size() == 1){
-            return lista.get(0);
+            String lastName = lista.get(0);
+            lista.remove(0);
+            return lastName;
         }
 
         while(reroll) {
