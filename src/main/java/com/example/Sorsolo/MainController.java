@@ -27,6 +27,10 @@ public class MainController {
         boolean reroll = true;
         String rolledName = "None";
 
+        if(lista.isEmpty()){
+            return "The list is empty!";
+        }
+
         if(lista.size() == 1){
             return lista.get(0);
         }
